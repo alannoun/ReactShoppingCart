@@ -1,6 +1,6 @@
 import React from 'react';
 
-//feature 1
+//feature 2
 
 function App() {
   return (
