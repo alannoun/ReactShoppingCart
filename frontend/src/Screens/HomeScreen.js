@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { listProduct } from '../actions/productActions';
+import { listProducts } from '../actions/productActions';
 
 
 function HomeScreen(props) {
@@ -12,7 +12,7 @@ function HomeScreen(props) {
     //useEffect runs when component mounts/renders
     useEffect(() => {
 
-        dispatch(listProduct());
+        dispatch(listProducts());
 
         // const fetchData = async () => {
         //     const {data} = await axios.get("/api/products");
@@ -35,14 +35,13 @@ function HomeScreen(props) {
                                     <img className ="product-image" src = {product.image} alt = {product.title}></img>
                                 </Link>
                                 <div className = "product-name">
-                                    <Link to={"/products/" + product._id}> {product.title} </Link>
+                                    <Link to={"/products/" + product._id}> {product.name} </Link>
                                 </div>
+                                
                                 <div className = "product-brand"> {product.brand} </div> 
                                 <div className ="product-price">
-                                    <div>{product.price}</div>
-                                    <button className="button-primary">
-                                        Add to cart
-                                    </button>
+                                    <div> ${product.price}</div>
+                                    
                                 </div>
                                 <div className = "product-rating"> {product.rating} Stars {product.numReview} </div>
                             </div>
