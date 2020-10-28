@@ -34,7 +34,7 @@ function ProductScreen(props) {
                             {product.rating} Stars {product.numReview}
                         </li>
                         <li>
-                            <b>{product.price}</b>
+                            <b>${product.price}</b>
                         </li>
                         <li>
                             Description
@@ -48,18 +48,18 @@ function ProductScreen(props) {
                             Price: ${product.price}
                         </li>
                         <li>
-                            Status: {product.qty > 0 ? product.status : "Unavailable"}
+                            Status: {product.countInStock > 0 ? product.status : "Unavailable"}
                         </li>
                         <li>
                             Qty: <select value = {qty} onChange={(e) => {setQty(e.target.value)}}>
-                                    {[...Array(product.qty).keys()].map(x => 
+                                    {[...Array(product.countInStock).keys()].map(x => 
                                     <option value = {x + 1} key = {x + 1}>{x + 1}</option> 
                                     )}
                                     
                                 </select>
                         </li>
                         <li>
-                            {product.qty > 0 ? <button className="button primary" onClick={handleAddToCart}>Add to cart</button> 
+                            {product.countInStock > 0 ? <button className="button primary" onClick={handleAddToCart}>Add to cart</button> 
                             : 
                             <div>Out of Stock</div>
                             }

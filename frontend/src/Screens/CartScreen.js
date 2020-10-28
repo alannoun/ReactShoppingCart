@@ -35,7 +35,6 @@ export default function CartScreen(props){
                     cartItems.map(item => 
                         <li key={item.product}>
                             <div className="cart-image"> <img src={item.image} alt = "product"></img></div>
-                            
                             <div className="cart-name">
                                 <div>
                                     <Link to={"/products/" + item.product}> {item.name}</Link>
@@ -59,7 +58,7 @@ export default function CartScreen(props){
             </ul>
          </div>
          <div className = "cart-action">
-             <h3>Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items) :
+             <h3>Subtotal ( {cartItems.reduce((a, c) => a + parseInt(c.qty), 0)} items) :
              $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}
              
              </h3>
