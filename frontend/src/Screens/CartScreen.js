@@ -37,7 +37,7 @@ export default function CartScreen(props){
                             <div className="cart-image"> <img src={item.image} alt = "product"></img></div>
                             <div className="cart-name">
                                 <div>
-                                    <Link to={"/products/" + item.product}> {item.name}</Link>
+                                    <Link to={"/product/" + item.product}> {item.name}</Link>
                                     
                                 </div>
                                 <div>

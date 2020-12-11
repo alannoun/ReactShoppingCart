@@ -47,6 +47,9 @@ function ProductsScreen(props) {
     if (successSave) {
       setModalVisible(false);
     }
+    if (!userInfo.isAdmin) {
+      props.history.push("/")
+    }
     dispatch(listProducts());
     return () => {
       //

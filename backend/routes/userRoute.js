@@ -3,6 +3,11 @@ import User from '../models/userModel'
 import {getToken} from '../util'
 const router = express.Router();
 
+router.get('logout', async (req, res) => {
+    res.clearCookie('userInfo')
+    res.redirect('/')
+})
+
 router.get('/createadmins', async (req, res) => {
 try {
     const user = new User({
@@ -21,6 +26,8 @@ try {
 
     
 })
+
+
 
 router.post('/signin', async (req, res) => {
         const email = req.body.email;

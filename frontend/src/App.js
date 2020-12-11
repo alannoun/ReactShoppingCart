@@ -6,19 +6,37 @@ import ProductScreen from "./Screens/ProductScreen";
 import SigninScreen from './Screens/SigninScreen';
 import RegisterScreen from './Screens/RegisterScreen'
 import ProductsScreen from './Screens/ProductsScreen'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import {logout} from './actions/userActions'
+import {useEffect, useState} from 'react'
+
+
 
 //feature 2
 
 
-function App () {
+function App (props) {
   
-  
-
+    const dispatch = useDispatch();
     const userSignin = useSelector(state=> state.userSignin)
     const userRegister = useSelector(state=> state.userRegister)
-    const {userInfo} = userSignin.userInfo === null ? userRegister : userSignin;
 
+
+    const {userInfo} = userSignin.userInfo === null ? userRegister : userSignin;
+ 
+    
+    useEffect(() => {
+        if (userInfo === null) {
+            console.log("Sucess")
+        }
+        return () => {
+    
+        }
+    }, [userInfo]) //If userInfo state changes, useEffect runs again.
+
+    // const logout = (e) => {
+    //   dispatch(logout())
+    // }
     const openMenu = () => {
       document.querySelector(".sidebar").classList.add("open");
     }
@@ -34,16 +52,22 @@ function App () {
             <div className="brand">
               <button onClick={openMenu}> &#9776; </button>
             
-              <Link to="/">Amazona</Link>
+              <Link to="/">ReactShop</Link>
             </div>
             <div className="header-links">
               
               {
                 
-                userInfo ? <Link to='/profile'>{userInfo.name}</Link>
+                userInfo
+                 ? <>
+                <Link to='/profile'>{userInfo.name}</Link>
+                <button type="button"onClick={(e) => dispatch(logout())}> Log out; </button>
+                </>
                 :
                 <Link to="/signin">Sign in</Link>
               }
+              
+              
               
 
             </div>
@@ -67,7 +91,7 @@ function App () {
           <main className = "main">
               <div className="content"> 
                 <Route path="/products" component={ProductsScreen}></Route>
-                <Route path="/products/:id" component={ProductScreen}></Route>
+                <Route path="/product/:id" component={ProductScreen}></Route>
                 <Route path="/" exact={true} component={HomeScreen}></Route>
                 <Route path ="/cart/:id?" component={CartScreen}></Route>
                 <Route path="/signin" component={SigninScreen}></Route>
