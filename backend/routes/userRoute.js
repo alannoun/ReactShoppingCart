@@ -30,18 +30,18 @@ try {
 
 
 router.post('/signin', async (req, res) => {
-        const email = req.body.email;
-        const signinUser = await User.findOne({
+
+        const user = await User.findOne({
             email: req.body.email,
             password: req.body.password
         })
-        if (signinUser) {
+        if (user) {
             res.send({
-                _id: signinUser._id,
-                name: signinUser.name,
-                email: signinUser.email,
-                isAdmin: signinUser.isAdmin,
-                token: getToken(signinUser)//identifier to see if next req is authenticated or not
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                token: getToken(user)//identifier to see if next req is authenticated or not
             })
             
 
